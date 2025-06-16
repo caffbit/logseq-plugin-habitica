@@ -227,6 +227,50 @@ function main() {
     }, 300); // 300ms 延遲，避免重複觸發
   });
 
+  const root = ReactDOM.createRoot(document.getElementById("app")!);
+
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+
+  function createModel() {
+    return {
+      show() {
+        logseq.showMainUI();
+      },
+    };
+  }
+
+  logseq.provideModel(createModel());
+  logseq.setMainUIInlineStyle({
+    zIndex: 11,
+  });
+
+  const openIconName = "habitica-plugin-open";
+
+  logseq.provideStyle(css`
+    .${openIconName} {
+      opacity: 0.55;
+      font-size: 20px;
+      margin-top: 4px;
+    }
+
+    .${openIconName}:hover {
+      opacity: 0.9;
+    }
+  `);
+
+  logseq.App.registerUIItem("toolbar", {
+    key: openIconName,
+    template: `
+    <a data-on-click="show">
+        <div class="${openIconName}" title="Habitica 設定">🎮</div>
+    </a>    
+`,
+  });
+
 }
 
 logseq.ready(main).catch(console.error);
