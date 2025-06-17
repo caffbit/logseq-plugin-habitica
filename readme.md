@@ -2,9 +2,12 @@
 
 A plugin that perfectly integrates Logseq tasks with Habitica gamification!
 
-![Plugin Logo](./logo.svg)
-
 ## ✨ Features
+
+![SlashCommand](./screenshots/slash-command.png)
+![CommandPalette](./screenshots/command-palette.png)
+![Settings](./screenshots/settings.png)
+
 
 - 🎯 **Smart Task Sync** - Automatically create Logseq TODO tasks in Habitica
 - 🏆 **Four Priority Levels** - Support for Trivial, Easy, Medium, and Hard priority settings
