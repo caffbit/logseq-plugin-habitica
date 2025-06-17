@@ -57,32 +57,6 @@ const canCreateHabiticaTask = (blockContent: string) => {
 function main() {
   console.info(`#${pluginId}: MAIN`);
 
-  // 顯示使用指南
-  if (logseq.settings?.showUsageGuide !== false) {
-    console.info(`
-🎉 Logseq Habitica Plugin 使用指南:
-
-🔧 設定:
-  1. 在 Habitica 網站上點擊 Settings > API
-  2. 複製 User ID 和 API Token
-  3. 在 Logseq 設定中貼上這些資訊
-  4. 使用 'Habitica: Test Connection' 驗證連接
-
-🎯 使用方式:
-  ● Slash 指令: /Habitica: Create [Priority] Task
-  ● 批量建立: Ctrl+Shift+H + 數字1-4
-  ● 測試連接: Ctrl+Shift+H + T
-
-🔄 自動同步:
-  ● 當你在 Logseq 中將任務標記為 DONE，將自動在 Habitica 中完成
-
-🚫 避免 API 限流:
-  ● 批量操作會自動加入延遲
-  ● 如果被限流，請等待一分鐘後再試
-
-設定 'showUsageGuide' 為 false 可關閉此指南。`);
-  }
-
   // 註冊設定
   logseq.useSettingsSchema([
     {
@@ -98,13 +72,6 @@ function main() {
       title: 'Habitica API Token',
       description: '你的 Habitica API Token（在 Settings > API 中找到）',
       default: ''
-    },
-    {
-      key: 'showUsageGuide',
-      type: 'boolean',
-      title: '顯示使用指南',
-      description: '在控制台顯示詳細的使用指南',
-      default: true
     }
   ]);
 
@@ -142,10 +109,10 @@ function main() {
       // 處理 rate limiting headers
       const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
       const rateLimitReset = response.headers.get('X-RateLimit-Reset');
-      
+
       if (rateLimitRemaining) {
-      console.log(`API Rate Limit Remaining: ${rateLimitRemaining}`);
-        
+        console.log(`API Rate Limit Remaining: ${rateLimitRemaining}`);
+
         // 如果剩餘請求數很少，記錄重置時間
         if (parseInt(rateLimitRemaining) <= 5 && rateLimitReset) {
           console.warn(`Rate limit will reset at: ${new Date(parseInt(rateLimitReset) * 1000).toLocaleString()}`);
