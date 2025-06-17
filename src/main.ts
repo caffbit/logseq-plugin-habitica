@@ -47,9 +47,9 @@ const parseBlockTaskContent = (blockContent: string) => {
 const canCreateHabiticaTask = (blockContent: string) => {
   const parsed = parseBlockTaskContent(blockContent);
 
-  if (!parsed.marker) return { canCreate: false, reason: `此區塊不是 ${TODO_CATEGORY.join('、')} 任務` };
-  if (parsed.hasTaskId) return { canCreate: false, reason: '此區塊已連結到 Habitica 任務' };
-  if (!parsed.taskText) return { canCreate: false, reason: '任務內容不能為空' };
+  if (!parsed.marker) return { canCreate: false, reason: `This block is not a ${TODO_CATEGORY.join('/')} task` };
+  if (parsed.hasTaskId) return { canCreate: false, reason: 'This block is already linked to a Habitica task' };
+  if (!parsed.taskText) return { canCreate: false, reason: 'Task content cannot be empty' };
 
   return { canCreate: true };
 };
@@ -63,14 +63,14 @@ function main() {
       key: 'userId',
       type: 'string',
       title: 'Habitica User ID',
-      description: '你的 Habitica User ID（在 Settings > API 中找到）',
+      description: 'Your Habitica User ID (found in Settings > Site Data)',
       default: ''
     },
     {
       key: 'apiToken',
       type: 'string',
       title: 'Habitica API Token',
-      description: '你的 Habitica API Token（在 Settings > API 中找到）',
+      description: 'Your Habitica API Token (found in Settings > Site Data)',
       default: ''
     }
   ]);
@@ -85,13 +85,13 @@ function main() {
     const apiToken = logseq.settings?.apiToken as string;
 
     if (!userId || !apiToken) {
-      throw new Error('請先在設定中配置 Habitica User ID 和 API Token');
+      throw new Error('Please configure Habitica User ID and API Token in settings first');
     }
 
     // 檢查是否仍在 rate limit 期間
     if (isRateLimited && Date.now() < rateLimitResetTime) {
       const waitTime = Math.ceil((rateLimitResetTime - Date.now()) / 1000);
-      throw new Error(`API 請求被限流，請等待 ${waitTime} 秒後再試`);
+      throw new Error(`API request rate limited, please wait ${waitTime} seconds before retrying`);
     }
 
     try {
@@ -135,12 +135,12 @@ function main() {
           isRateLimited = false;
           return makeHabiticaRequest(endpoint, method, body, retries + 1);
         } else {
-          throw new Error(`API 請求被限流且重試次數已達上限。請稍後再試。`);
+          throw new Error(`API request rate limited and maximum retries reached. Please try again later.`);
         }
       }
 
       if (!response.ok) {
-        throw new Error(`API 呼叫失敗: ${response.status} ${response.statusText}`);
+        throw new Error(`API call failed: ${response.status} ${response.statusText}`);
       }
 
       // 重置 rate limit 狀態（成功請求）
@@ -149,7 +149,7 @@ function main() {
 
     } catch (error) {
       if (error instanceof TypeError && error.message.includes('fetch')) {
-        throw new Error('網路連接失敗，請檢查網路連接');
+        throw new Error('Network connection failed, please check your network connection');
       }
       throw error;
     }
@@ -170,11 +170,11 @@ function main() {
          [?page :block/name ?page-name]]
       `);
 
-      if (allPages.length === 0) throw new Error('找不到今天的日誌頁面');
+      if (allPages.length === 0) throw new Error('Cannot find today\'s journal page');
       todayPage = await logseq.Editor.getPage(allPages[0][0]);
     }
 
-    if (!todayPage) throw new Error('無法獲取今天的日誌頁面');
+    if (!todayPage) throw new Error('Unable to get today\'s journal page');
     return todayPage;
   };
 
@@ -202,15 +202,15 @@ function main() {
       // 驗證設定的 User ID 是否正確
       if (configuredUserId !== userIdFromAPI) {
         logseq.UI.showMsg(
-          `⚠️ 設定錯誤：配置的 User ID (${configuredUserId}) 與 API 返回的 ID (${userIdFromAPI}) 不匹配。請檢查設定。`,
+          `⚠️ Configuration Error: Configured User ID (${configuredUserId}) does not match API returned ID (${userIdFromAPI}). Please check settings.`,
           'warning'
         );
       } else {
-        logseq.UI.showMsg(`✅ 連接成功！歡迎 ${userName}`, 'success');
+        logseq.UI.showMsg(`✅ Connection successful! Welcome ${userName}`, 'success');
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '未知錯誤';
-      logseq.UI.showMsg(`❌ 連接測試失敗: ${errorMessage}`, 'error');
+      logseq.UI.showMsg(`❌ Connection test failed: ${errorMessage}`, 'error');
     }
   };
 
@@ -236,14 +236,14 @@ function main() {
       });
 
       if (todoBlocks.length === 0) {
-        logseq.UI.showMsg('今天沒有找到可建立的 TODO 任務', 'info');
+        logseq.UI.showMsg('No TODO tasks found for today that can be created', 'info');
         return;
       }
 
       // 檢查是否有太多任務（防止意外大量 API 呼叫）
       if (todoBlocks.length > 50) {
         const proceed = await logseq.UI.showMsg(
-          `發現 ${todoBlocks.length} 個 TODO 任務。這將產生大量 API 呼叫，是否繼續？`,
+          `Found ${todoBlocks.length} TODO tasks. This will generate many API calls, do you want to continue?`,
           'warning'
         );
         if (!proceed) return;
@@ -282,7 +282,7 @@ function main() {
           // 如果是 rate limit 錯誤，停止批量處理
           if (error instanceof Error && error.message.includes('限流')) {
             logseq.UI.showMsg(
-              `批量建立因 API 限流而停止。已成功建立 ${successCount} 個任務，${errorCount} 個失敗。請稍後再試。`,
+              `Batch creation stopped due to API rate limiting. Successfully created ${successCount} tasks, ${errorCount} failed. Please try again later.`,
               'warning'
             );
             break;
@@ -291,13 +291,13 @@ function main() {
       }
 
       if (errorCount === 0) {
-        logseq.UI.showMsg(`成功建立 ${successCount} 個${priorityName}優先級 Habitica 任務`, 'success');
+        logseq.UI.showMsg(`Successfully created ${successCount} ${priorityName} priority Habitica tasks`, 'success');
       } else {
-        logseq.UI.showMsg(`建立完成：${successCount} 成功，${errorCount} 失敗（${priorityName}優先級）`, 'warning');
+        logseq.UI.showMsg(`Creation completed: ${successCount} successful, ${errorCount} failed (${priorityName} priority)`, 'warning');
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '未知錯誤';
-      logseq.UI.showMsg(`批量建立${priorityName}優先級任務失敗: ${errorMessage}`, 'error');
+      logseq.UI.showMsg(`Batch creation of ${priorityName} priority tasks failed: ${errorMessage}`, 'error');
     }
   };
 
@@ -306,13 +306,13 @@ function main() {
     try {
       const block = await logseq.Editor.getBlock(blockUuid);
       if (!block) {
-        logseq.UI.showMsg('找不到區塊內容', 'error');
+        logseq.UI.showMsg('Block content not found', 'error');
         return;
       }
 
       const checkResult = canCreateHabiticaTask(block.content);
       if (!checkResult.canCreate) {
-        logseq.UI.showMsg(checkResult.reason || '無法建立任務', 'warning');
+        logseq.UI.showMsg(checkResult.reason || 'Unable to create task', 'warning');
         return;
       }
 
@@ -333,16 +333,16 @@ function main() {
       console.log(`Created ${priorityName} priority task:`, result.data._id);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '未知錯誤';
-      logseq.UI.showMsg(`建立${priorityName}優先級任務失敗: ${errorMessage}`, 'error');
+      logseq.UI.showMsg(`Failed to create ${priorityName} priority task: ${errorMessage}`, 'error');
     }
   };
 
   // 註冊批量建立指令
   const priorities = [
-    { key: 'trivial', value: 0.1, name: '簡單', binding: 'shift+1' },
-    { key: 'easy', value: 1, name: '簡單', binding: 'shift+2' },
-    { key: 'medium', value: 1.5, name: '中等', binding: 'shift+3' },
-    { key: 'hard', value: 2, name: '困難', binding: 'shift+4' }
+    { key: 'trivial', value: 0.1, name: 'Trivial', binding: 'shift+1' },
+    { key: 'easy', value: 1, name: 'Easy', binding: 'shift+2' },
+    { key: 'medium', value: 1.5, name: 'Medium', binding: 'shift+3' },
+    { key: 'hard', value: 2, name: 'Hard', binding: 'shift+4' }
   ];
 
   priorities.forEach(p => {
@@ -406,7 +406,7 @@ function main() {
         } catch (error) {
           console.error('Error updating task:', error);
           const errorMessage = error instanceof Error ? error.message : '未知錯誤';
-          logseq.UI.showMsg(`更新任務失敗: ${errorMessage}`, 'error');
+          logseq.UI.showMsg(`Failed to update task: ${errorMessage}`, 'error');
           processedTasks.delete(taskKey);
         }
       }

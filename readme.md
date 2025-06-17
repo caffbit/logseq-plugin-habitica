@@ -1,167 +1,163 @@
 # Logseq Habitica Plugin 🎮
 
-將 Logseq 任務與 Habitica 遊戲化完美整合的插件！
+A plugin that perfectly integrates Logseq tasks with Habitica gamification!
 
 ![Plugin Logo](./logo.svg)
 
-## ✨ 功能特色
+## ✨ Features
 
-- 🎯 **智能任務同步** - 將 Logseq 的 TODO 任務自動建立到 Habitica
-- 🏆 **四種優先級** - 支援瑣碎、簡單、中等、困難四種優先級設定
-- ⚡ **即時完成同步** - 在 Logseq 標記 DONE 時自動在 Habitica 完成任務
-- 🚀 **批量操作** - 一鍵建立今日所有 TODO 任務
-- 🔒 **安全可靠** - 遵循 Habitica API 使用準則，內建限流保護
+- 🎯 **Smart Task Sync** - Automatically create Logseq TODO tasks in Habitica
+- 🏆 **Four Priority Levels** - Support for Trivial, Easy, Medium, and Hard priority settings
+- ⚡ **Real-time Completion Sync** - Automatically complete tasks in Habitica when marked DONE in Logseq
+- 🚀 **Batch Operations** - One-click creation of all today's TODO tasks
+- 🔒 **Secure & Reliable** - Follows Habitica API usage guidelines with built-in rate limiting protection
 
-## 🛠️ 安裝設定
+## 🛠️ Installation & Setup
 
-### 1. 安裝插件
-1. 在 Logseq 中開啟開發者模式
-2. 前往插件頁面，選擇「載入未打包插件」
-3. 選擇插件目錄（包含 package.json 的目錄）
+### 1. Install Plugin
+1. Enable developer mode in Logseq
+2. Go to plugins page and select "Load unpacked plugin"
+3. Select the plugin directory (containing package.json)
 
-### 2. 獲取 Habitica API 資訊
-1. 登入 [Habitica](https://habitica.com)
-2. 前往 **Settings** → **API**
-3. 複製你的 **User ID** 和 **API Token**
+### 2. Get Habitica API Information
+1. Log in to [Habitica](https://habitica.com)
+2. Go to **Settings** → **API**
+3. Copy your **User ID** and **API Token**
 
-### 3. 配置插件
-1. 在 Logseq 設定中找到 「Habitica Plugin」
-2. 貼上你的 **User ID** 和 **API Token**
-3. 使用 `Ctrl+Shift+H T` 測試連接
+### 3. Configure Plugin
+1. Find "Habitica Plugin" in Logseq settings
+2. Paste your **User ID** and **API Token**
+3. Use `Ctrl+Shift+H T` to test connection
 
-## 🎯 使用方法
+## 🎯 Usage
 
-### 單一任務建立（Slash 指令）
-在任何 TODO 區塊中使用 Slash 指令：
-- `/Habitica: Create Trivial Task` - 建立瑣碎任務（黃色）
-- `/Habitica: Create Easy Task` - 建立簡單任務（橙色）
-- `/Habitica: Create Medium Task` - 建立中等任務（紅色）
-- `/Habitica: Create Hard Task` - 建立困難任務（紫色）
+### Single Task Creation (Slash Commands)
+Use slash commands in any TODO block:
+- `/Habitica: Create Trivial Task` - Create trivial task (yellow)
+- `/Habitica: Create Easy Task` - Create easy task (orange)
+- `/Habitica: Create Medium Task` - Create medium task (red)
+- `/Habitica: Create Hard Task` - Create hard task (purple)
 
-### 批量建立（快捷鍵）
-- `Ctrl+Shift+H + 1` - 批量建立瑣碎任務
-- `Ctrl+Shift+H + 2` - 批量建立簡單任務
-- `Ctrl+Shift+H + 3` - 批量建立中等任務
-- `Ctrl+Shift+H + 4` - 批量建立困難任務
+### Batch Creation (Keyboard Shortcuts)
+- `Ctrl+Shift+H + 1` - Batch create trivial tasks
+- `Ctrl+Shift+H + 2` - Batch create easy tasks
+- `Ctrl+Shift+H + 3` - Batch create medium tasks
+- `Ctrl+Shift+H + 4` - Batch create hard tasks
 
-### 測試連接
-- `Ctrl+Shift+H + T` - 測試 Habitica 連接
+### Test Connection
+- `Ctrl+Shift+H + T` - Test Habitica connection
 
-## 📝 使用範例
+## 📝 Usage Examples
 
-### 基本任務格式
+### Basic Task Format
 ```markdown
-- TODO 完成專案報告
-- TODO 閱讀技術文章
-- LATER 規劃下週會議
+- TODO Complete project report
+- TODO Read technical articles
+- LATER Plan next week's meeting
 ```
 
-### 任務建立後
+### After Task Creation
 ```markdown
-- TODO 完成專案報告
+- TODO Complete project report
 :HABITICA:
 taskId: 12345678-90ab-cdef-1234-567890abcdef
 :END:
 ```
 
-### 任務完成同步
+### Task Completion Sync
 ```markdown
-- DONE 完成專案報告  ← 在 Logseq 標記為 DONE
+- DONE Complete project report  ← Mark as DONE in Logseq
 :HABITICA:
 taskId: 12345678-90ab-cdef-1234-567890abcdef
 :END:
 ```
-任務會自動在 Habitica 中標記為完成！
+Task will be automatically marked as completed in Habitica!
 
-## ⚙️ 設定選項
+## ⚙️ Configuration Options
 
-| 設定項目 | 說明 | 預設值 |
-|---------|------|--------|
-| **User ID** | 你的 Habitica User ID | 空白 |
-| **API Token** | 你的 Habitica API Token | 空白 |
+| Setting | Description | Default |
+|---------|-------------|---------|
+| **User ID** | Your Habitica User ID | Empty |
+| **API Token** | Your Habitica API Token | Empty |
 
-## 🚦 API 限流保護
+## 🚦 API Rate Limiting Protection
 
-本插件完全遵循 Habitica API 使用準則：
+This plugin fully complies with Habitica API usage guidelines:
 
-- ✅ **自動延遲** - 批量操作間自動加入 1 秒延遲
-- ✅ **智能重試** - 遇到限流時自動重試（最多 3 次）
-- ✅ **安全停止** - 批量操作超過 50 個任務時會先詢問
-- ✅ **狀態監控** - 即時顯示剩餘 API 請求數
+- ✅ **Auto Delay** - Automatic 1-second delay between batch operations
+- ✅ **Smart Retry** - Automatic retry on rate limit (up to 3 times)
+- ✅ **Safe Stop** - Confirmation prompt for batch operations over 50 tasks
+- ✅ **Status Monitoring** - Real-time display of remaining API requests
 
-## 🔧 支援的任務類型
+## 🔧 Supported Task Types
 
-### 可建立的任務
-- `TODO` 任務
-- `LATER` 任務  
-- `WAITING` 任務
+### Creatable Tasks
+- `TODO` tasks
+- `LATER` tasks  
+- `WAITING` tasks
 
-### 自動完成同步
-- `DONE` 任務會自動在 Habitica 中完成
+### Auto Completion Sync
+- `DONE` tasks will be automatically completed in Habitica
 
-## 🎮 Habitica 優先級對應
+## 🎮 Habitica Priority Mapping
 
-| 插件設定 | Habitica 顯示 | 顏色 | 數值 |
-|---------|--------------|------|------|
-| Trivial | !（簡單） | 黃色 | 0.1 |
-| Easy | !!（簡單） | 橙色 | 1.0 |
-| Medium | !!!（中等） | 紅色 | 1.5 |
-| Hard | !!!!（困難） | 紫色 | 2.0 |
+| Plugin Setting | Habitica Display | Color | Value |
+|---------------|-----------------|-------|-------|
+| Trivial | ! (Easy) | Yellow | 0.1 |
+| Easy | !! (Easy) | Orange | 1.0 |
+| Medium | !!! (Medium) | Red | 1.5 |
+| Hard | !!!! (Hard) | Purple | 2.0 |
 
-## 🚨 注意事項
+## 🚨 Important Notes
 
-### 任務要求
-- 任務內容不能為空
-- 每個區塊只能連結一個 Habitica 任務
-- 任務內容超過 100 字元會自動截斷
+### Task Requirements
+- Task content cannot be empty
+- Each block can only link to one Habitica task
+- Task content over 100 characters will be automatically truncated
 
-### 批量操作
-- 超過 50 個任務時會顯示確認對話框
-- 遇到 API 限流會自動停止並顯示進度
-- 建議在網路穩定時進行批量操作
+### Batch Operations
+- Confirmation dialog will appear for operations over 50 tasks
+- Operations will automatically stop and show progress on API rate limiting
+- Recommended to perform batch operations when network is stable
 
-## 🐛 故障排除
+## 🐛 Troubleshooting
 
-### 連接問題
-1. 確認 User ID 和 API Token 正確
-2. 檢查網路連接
-3. 使用測試連接功能驗證設定
+### Connection Issues
+1. Verify User ID and API Token are correct
+2. Check network connection
+3. Use test connection feature to verify settings
 
-### API 限流
-- 如果遇到限流，請等待 1 分鐘後再試
-- 避免短時間內大量 API 請求
-- 批量操作建議分批進行
+### API Rate Limiting
+- If encountering rate limits, wait 1 minute before retrying
+- Avoid making numerous API requests in short time periods
+- Recommended to perform batch operations in smaller batches
 
-### 任務同步問題
-- 確認任務格式正確（以 TODO/LATER/WAITING 開頭）
-- 檢查 HABITICA drawer 是否正確生成
-- 查看控制台錯誤訊息
+### Task Sync Issues
+- Ensure task format is correct (starts with TODO/LATER/WAITING)
+- Check if HABITICA drawer is correctly generated
+- Check console for error messages
 
-## 🔄 開發資訊
+## 🔄 Development Info
 
-### 技術棧
+### Tech Stack
 - TypeScript
 - Logseq Plugin API
 - Habitica REST API
 
-### 專案結構
+### Project Structure
 ```
 logseq-plugin-habitica/
 ├── src/
-│   └── main.ts          # 主要插件邏輯
-├── logo.svg             # 插件圖標
-├── package.json         # 專案配置
-└── README.md           # 說明文件
+│   └── main.ts          # Main plugin logic
+├── logo.svg             # Plugin icon
+├── package.json         # Project configuration
+└── README.md           # Documentation
 ```
 
-## 📄 授權
+## 📄 License
 
 MIT License
 
-## 🤝 貢獻
+## 🤝 Contributing
 
-歡迎提交 Issue 和 Pull Request！
-
----
-
-**享受遊戲化的任務管理體驗！** 🎉
+Issues and Pull Requests are welcome!
