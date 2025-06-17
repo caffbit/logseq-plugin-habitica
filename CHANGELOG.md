@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.0.0...v1.1.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* replace manual changelog with automated CI generation ([c2dd62d](https://github.com/caffbit/logseq-plugin-habitica/commit/c2dd62d222a5dd95a17f7c9fb48d4d03bede9d99))
+
+
+### Features
+
+* add MIT License file to the repository ([55c83df](https://github.com/caffbit/logseq-plugin-habitica/commit/55c83df15716975da18fb85a9645656b073b8ea0))
+
 # 1.0.0 (2025-06-17)
 
 
