@@ -1,56 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <defs>
-    <!-- 簡潔的漸層 -->
-    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
-    </linearGradient>
-    
-    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#EF4444;stop-opacity:1" />
-    </linearGradient>
-  </defs>
+  <!-- 筆記本圖示 - 代表 Logseq -->
+  <rect x="25" y="15" width="35" height="45" fill="none" stroke="black" stroke-width="2" rx="2"/>
+  <line x1="30" y1="25" x2="55" y2="25" stroke="black" stroke-width="1.5"/>
+  <line x1="30" y1="35" x2="50" y2="35" stroke="black" stroke-width="1.5"/>
+  <line x1="30" y1="45" x2="55" y2="45" stroke="black" stroke-width="1.5"/>
   
-  <!-- 主要流線形狀 -->
-  <path d="M20 35 Q50 15 80 35 Q85 50 75 65 Q50 85 25 65 Q15 50 20 35 Z" 
-        fill="url(#mainGradient)" 
-        opacity="0.9"/>
+  <!-- 連接線 -->
+  <line x1="50" y1="50" x2="50" y2="65" stroke="black" stroke-width="2"/>
+  <circle cx="50" cy="57" r="2" fill="black"/>
   
-  <!-- 中央連接符號 -->
-  <circle cx="50" cy="50" r="8" fill="white" opacity="0.95"/>
+  <!-- 遊戲控制器圖示 - 代表 Habitica -->
+  <rect x="35" y="70" width="30" height="15" fill="none" stroke="black" stroke-width="2" rx="7"/>
+  <circle cx="42" cy="77" r="2" fill="black"/>
+  <circle cx="58" cy="77" r="2" fill="black"/>
   
-  <!-- 流線型連接線 -->
-  <path d="M30 40 Q50 25 70 40" 
-        stroke="white" 
-        stroke-width="3" 
-        fill="none" 
-        stroke-linecap="round" 
-        opacity="0.8"/>
-  
-  <path d="M30 60 Q50 75 70 60" 
-        stroke="white" 
-        stroke-width="3" 
-        fill="none" 
-        stroke-linecap="round" 
-        opacity="0.8"/>
-  
-  <!-- 簡潔的節點 -->
-  <circle cx="30" cy="40" r="4" fill="white" opacity="0.9"/>
-  <circle cx="70" cy="40" r="4" fill="white" opacity="0.9"/>
-  <circle cx="30" cy="60" r="4" fill="white" opacity="0.9"/>
-  <circle cx="70" cy="60" r="4" fill="white" opacity="0.9"/>
-  
-  <!-- 流線型勾選標記 -->
-  <path d="M45 48 L48 52 L55 44" 
-        stroke="url(#accentGradient)" 
-        stroke-width="3" 
-        fill="none" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  
-  <!-- 簡潔的裝飾點 -->
-  <circle cx="50" cy="25" r="2" fill="url(#accentGradient)" opacity="0.7"/>
-  <circle cx="25" cy="50" r="1.5" fill="url(#accentGradient)" opacity="0.6"/>
-  <circle cx="75" cy="50" r="1.5" fill="url(#accentGradient)" opacity="0.6"/>
+  <!-- 完成勾選標記 -->
+  <path d="M65 20 L70 25 L80 15" stroke="black" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
