@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.1.2...v1.2.0) (2025-06-18)
+
+
+### Features
+
+* redesign task flow to comply with Habitica API rate limits ([a5d77e3](https://github.com/caffbit/logseq-plugin-habitica/commit/a5d77e3f3cb35b8b81ea78be5b5b2a68d49cea4a))
+
 ## [1.1.2](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.1.1...v1.1.2) (2025-06-18)
 
 
