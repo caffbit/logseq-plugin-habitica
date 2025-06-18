@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.1.0...v1.1.1) (2025-06-18)
+
+
+### Bug Fixes
+
+* resolve keybinding conflicts with Logseq native shortcuts ([208445e](https://github.com/caffbit/logseq-plugin-habitica/commit/208445eaf603a938159b489c21aaa681beddd182))
+
 # [1.1.0](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.0.0...v1.1.0) (2025-06-17)
 
 
