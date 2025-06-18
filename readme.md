@@ -1,18 +1,13 @@
-# Logseq Habitica Plugin 🎮
+# Logseq Habitica Plugin
 
 A plugin that integrates Logseq tasks with Habitica!
 
 ## ✨ Features
 
 ![SlashCommand](./screenshots/slash-command.png)
-![CommandPalette](./screenshots/command-palette.png)
 ![Settings](./screenshots/settings.png)
 
-
-- 🎯 **Smart Task Sync** - Automatically create Logseq TODO tasks in Habitica
 - 🏆 **Four Priority Levels** - Support for Trivial, Easy, Medium, and Hard priority settings
-- ⚡ **Real-time Completion Sync** - Automatically complete tasks in Habitica when marked DONE in Logseq
-- 🚀 **Batch Operations** - One-click creation of all today's TODO tasks
 - 🔒 **Secure & Reliable** - Follows Habitica API usage guidelines with built-in rate limiting protection
 
 ## 🎯 Usage
@@ -22,21 +17,19 @@ A plugin that integrates Logseq tasks with Habitica!
 2. Paste your **User ID** and **API Token**
 3. Use `Ctrl+Shift+H T` to test connection
 
-### Single Task Creation (Slash Commands)
-Use slash commands in any TODO block:
-- `/Habitica: Create Trivial Task` - Create trivial task (yellow)
-- `/Habitica: Create Easy Task` - Create easy task (orange)
-- `/Habitica: Create Medium Task` - Create medium task (red)
-- `/Habitica: Create Hard Task` - Create hard task (purple)
+### Task Completion (Slash Commands)
+Use slash commands in any TODO/LATER/WAITING block:
+- `/Habitica: Complete Trivial Task` - Complete trivial priority task
+- `/Habitica: Complete Easy Task` - Complete easy priority task
+- `/Habitica: Complete Medium Task` - Complete medium priority task
+- `/Habitica: Complete Hard Task` - Complete hard priority task
 
-### Batch Creation (Keyboard Shortcuts)
-- `Ctrl+Shift+H 1` - Batch create trivial tasks
-- `Ctrl+Shift+H 2` - Batch create easy tasks
-- `Ctrl+Shift+H 3` - Batch create medium tasks
-- `Ctrl+Shift+H 4` - Batch create hard tasks
+### How it works:
 
-### Test Connection
-- `Ctrl+Shift+H T` - Test Habitica connection
+1. Create daily TODOs in Logseq
+2. When completing tasks, use `/` to find Habitica:xxx commands
+3. The command will automatically create a Habitica task and complete it after a 1-second delay
+4. After Habitica task completion, the Logseq TODO will be automatically marked as DONE
 
 ## 📄 License
 
