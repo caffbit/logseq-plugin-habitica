@@ -8,6 +8,9 @@ const TODO_CATEGORY = ['TODO', 'LATER', 'WAITING'];
 const DONE_CATEGORY = ['DONE'];
 const HABITICA_DRAWER_REGEX = /\n:HABITICA:([\s\S]*?)\n:END:/s;
 const API_BASE_URL = 'https://habitica.com/api/v3';
+const AUTHOR_CLIENT_ID = "f82c8c63-51fe-43ef-959d-3ade37eab858"
+const LOGSEQ_PLUGIN_NAME = "Habitica Tasks"
+const HABITICA_PLUGIN_NAME = "Logseq Sync"
 const MAX_TASK_LENGTH = 100;
 const API_DELAY = 1000;
 const RATE_LIMIT_DELAY = 60000; // 1 分鐘延遲當被限流時
@@ -100,7 +103,8 @@ function main() {
         headers: {
           'x-api-user': userId,
           'x-api-key': apiToken,
-          'x-client': `${userId}-logseq-plugin-habitica`, // 必需的 X-Client header
+          // Habitica staff need to troubleshoot the source
+          'x-client': `${AUTHOR_CLIENT_ID}-${HABITICA_PLUGIN_NAME}`,
           'Content-Type': 'application/json'
         },
         body: body ? JSON.stringify(body) : undefined
