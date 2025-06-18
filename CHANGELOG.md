@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.1.1...v1.1.2) (2025-06-18)
+
+
+### Bug Fixes
+
+* update client ID and plugin name for Habitica API requests ([3ac97f7](https://github.com/caffbit/logseq-plugin-habitica/commit/3ac97f7a54deb63f02237f9575b30ea00d8337e2))
+
 ## [1.1.1](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.1.0...v1.1.1) (2025-06-18)
 
 
