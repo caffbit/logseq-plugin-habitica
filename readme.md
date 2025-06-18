@@ -30,13 +30,13 @@ Use slash commands in any TODO block:
 - `/Habitica: Create Hard Task` - Create hard task (purple)
 
 ### Batch Creation (Keyboard Shortcuts)
-- `Ctrl+Shift+H + 1` - Batch create trivial tasks
-- `Ctrl+Shift+H + 2` - Batch create easy tasks
-- `Ctrl+Shift+H + 3` - Batch create medium tasks
-- `Ctrl+Shift+H + 4` - Batch create hard tasks
+- `Ctrl+Shift+H 1` - Batch create trivial tasks
+- `Ctrl+Shift+H 2` - Batch create easy tasks
+- `Ctrl+Shift+H 3` - Batch create medium tasks
+- `Ctrl+Shift+H 4` - Batch create hard tasks
 
 ### Test Connection
-- `Ctrl+Shift+H + T` - Test Habitica connection
+- `Ctrl+Shift+H T` - Test Habitica connection
 
 ## 📄 License
 

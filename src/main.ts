@@ -218,7 +218,7 @@ function main() {
   logseq.App.registerCommandPalette({
     key: 'test-habitica-connection',
     label: 'Habitica: Test Connection',
-    keybinding: { binding: 'mod+shift+h t' }
+    keybinding: { binding: 'ctrl+shift+h t' }
   }, testHabiticaConnection);
 
   // 批量建立任務
@@ -339,17 +339,17 @@ function main() {
 
   // 註冊批量建立指令
   const priorities = [
-    { key: 'trivial', value: 0.1, name: 'Trivial', binding: 'shift+1' },
-    { key: 'easy', value: 1, name: 'Easy', binding: 'shift+2' },
-    { key: 'medium', value: 1.5, name: 'Medium', binding: 'shift+3' },
-    { key: 'hard', value: 2, name: 'Hard', binding: 'shift+4' }
+    { key: 'trivial', value: 0.1, name: 'Trivial', binding: '1' },
+    { key: 'easy', value: 1, name: 'Easy', binding: '2' },
+    { key: 'medium', value: 1.5, name: 'Medium', binding: '3' },
+    { key: 'hard', value: 2, name: 'Hard', binding: '4' }
   ];
 
   priorities.forEach(p => {
     logseq.App.registerCommandPalette({
       key: `create-todays-${p.key}-todos`,
       label: `Habitica: Create today's ${p.key.charAt(0).toUpperCase() + p.key.slice(1)} todos`,
-      keybinding: { binding: `mod+shift+h ${p.binding}` }
+      keybinding: { binding: `ctrl+shift+h ${p.binding}` }
     }, async () => {
       await createTodaysTodos(p.value, p.name);
     });
