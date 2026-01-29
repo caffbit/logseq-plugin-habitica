@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.2.0...v1.3.0) (2026-01-29)
+
+
+### Features
+
+* add support for self-hosted Habitica servers ([e75c105](https://github.com/caffbit/logseq-plugin-habitica/commit/e75c10582c80d29a6800666b75b4cb40b005a2c4))
+
 # [1.2.0](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.1.2...v1.2.0) (2025-06-18)
 
 
