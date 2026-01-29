@@ -88,7 +88,9 @@ function main() {
   const makeHabiticaRequest = async (endpoint: string, method: 'GET' | 'POST' | 'DELETE' = 'GET', body?: any, retries = 0): Promise<any> => {
     const userId = logseq.settings?.userId as string;
     const apiToken = logseq.settings?.apiToken as string;
-    const apiBaseURL = (logseq.settings?.apiBaseURL ?? API_BASE_URL) as string
+
+    const customURL = (logseq.settings?.apiBaseURL as string)?.trim();
+    const apiBaseURL = customURL ? customURL.replace(/\/+$/, '') : API_BASE_URL;
 
     if (!userId || !apiToken) {
       throw new Error('Please configure Habitica User ID and API Token in settings first');
