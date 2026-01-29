@@ -5,7 +5,8 @@ const pluginId = PL.id;
 
 // 常數定義
 const TODO_CATEGORY = ['TODO', 'LATER', 'WAITING'];
-const API_BASE_URL = 'https://habitica.com/api/v3';
+const API_BASE_URL = 'https://habitica.com';
+const API_VERSION = '/api/v3';
 const AUTHOR_CLIENT_ID = "f82c8c63-51fe-43ef-959d-3ade37eab858"
 const LOGSEQ_PLUGIN_NAME = "Habitica Tasks"
 const HABITICA_PLUGIN_NAME = "Logseq Sync"
@@ -62,6 +63,13 @@ function main() {
       title: 'Habitica API Token',
       description: 'Your Habitica API Token (found in Settings > Site Data)',
       default: ''
+    },
+    {
+      key: 'apiBaseURL',
+      type: 'string',
+      title: 'Habitica API Server',
+      description: 'Optional: Specify the base URL of your self-hosted Habitica API server if you are not using the official one (e.g., https://your-habitica-server.com). Leave blank to use the default official Habitica API.',
+      default: ''
     }
   ]);
 
@@ -80,6 +88,7 @@ function main() {
   const makeHabiticaRequest = async (endpoint: string, method: 'GET' | 'POST' | 'DELETE' = 'GET', body?: any, retries = 0): Promise<any> => {
     const userId = logseq.settings?.userId as string;
     const apiToken = logseq.settings?.apiToken as string;
+    const apiBaseURL = (logseq.settings?.apiBaseURL ?? API_BASE_URL) as string
 
     if (!userId || !apiToken) {
       throw new Error('Please configure Habitica User ID and API Token in settings first');
@@ -92,7 +101,7 @@ function main() {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      const response = await fetch(`${apiBaseURL}${API_VERSION}${endpoint}`, {
         method,
         headers: {
           'x-api-user': userId,
