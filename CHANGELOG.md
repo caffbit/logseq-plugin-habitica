@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.3.0...v1.3.1) (2026-01-29)
+
+
+### Bug Fixes
+
+* handle empty string default for apiBaseURL setting ([25840c3](https://github.com/caffbit/logseq-plugin-habitica/commit/25840c3a47f182b0864fc260abd4e81cf1f97e67))
+
 # [1.3.0](https://github.com/caffbit/logseq-plugin-habitica/compare/v1.2.0...v1.3.0) (2026-01-29)
 
 
